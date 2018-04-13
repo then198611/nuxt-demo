@@ -19,7 +19,7 @@
 
 export default {
   async asyncData ({store}) {
-    return store.dispatch('getUserList').then(res => {
+    return store.dispatch('user/getUserList').then(res => {
       return {
         message: res.message
       }
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     getData () {
-      this.$store.dispatch('getUserList', this.form).then(res => {
+      this.$store.dispatch('user/getUserList', this.form).then(res => {
         console.log(res)
       })
     },
