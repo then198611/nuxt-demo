@@ -5,7 +5,7 @@
   "author": "huangshuaihui <huangshuaihui>",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "HOST=0.0.0.0 PORT=8885 nuxt",
     "mock": "MOCK=true nuxt",
     "build": "nuxt build",
     "start": "nuxt build && nuxt start",
