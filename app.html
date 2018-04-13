@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<head>
+  {{ HEAD }}
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <script>
+    (function(d){var b=parseInt(window.screen.width);var e=b/d;var c=navigator.userAgent;if(/Android (\d+\.\d+)/.test(c)){var a=parseFloat(RegExp.$1);if(a>2.3){document.write('<meta name="viewport" content="width='+d+", minimum-scale = "+e+", maximum-scale = "+e+', target-densitydpi=device-dpi, minimal-ui">')}else{document.write('<meta name="viewport" content="width='+d+', target-densitydpi=device-dpi, minimal-ui">')}}else{document.write('<meta name="viewport" content="width='+d+', user-scalable=no, viewport-fit=cover">')}})(750);
+  </script>
+</head>
+<body {{ BODY_ATTRS }}>
+{{ APP }}
+</body>
+</html>
