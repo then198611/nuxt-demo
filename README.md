@@ -28,6 +28,23 @@ build:npm run build
 
 start:npm run start 
 
+# nuxt为增加增加的方法
+
+api: https://zh.nuxtjs.org/api/
+
+> asyncData
+```javascript
+export default {
+  data () {
+    return { project: 'default' }
+  },
+  asyncData (context) {
+    return { project: 'nuxt' }
+  }
+}
+```
+
+
 # 服务端渲染说明
 
 >async asyncData(context) 进在pages目录中使用 不可在components中使用
