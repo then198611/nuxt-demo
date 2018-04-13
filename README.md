@@ -52,6 +52,7 @@ export default {
 
 | 属性字段 | 类型 | 描述
 | --------   | -----:  | :----: |
+|app | Root vue | 可以调取Root所有东西|
 |isClient | Boolean | 是否来自客户端渲染|
 |isServer|Boolean|是否来自服务端渲染|
 |isDev|Boolean|是否是开发(dev) 模式，在生产环境的数据缓存中用到|
