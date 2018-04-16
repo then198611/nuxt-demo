@@ -1,15 +1,12 @@
-const S = require('./s')
-
-let obj = {}
-if (process.env.MOCK && S.mock.prefix && S.mock.baseURL) {
-  obj[S.mock.prefix] = S.mock.baseURL
-}
-let proxyObj = Object.assign(S.proxy, obj)
+// const S = require('./s')
+//
+// let obj = {}
+// if (process.env.MOCK && S.mock.prefix && S.mock.baseURL) {
+//   obj[S.mock.prefix] = S.mock.baseURL
+// }
+// let proxyObj = Object.assign(S.proxy, obj)
 
 module.exports = {
-  /*
-  ** Headers of the page
-  */
   head: {
     title: 'nuxt_demo',
     meta: [
@@ -21,13 +18,10 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  /*
-  ** Customize the progress bar color
-  */
+  router: {
+    base: '/n/'
+  },
   loading: { color: '#3B8070' },
-  /*
-  ** Build configuration
-  */
   build: {
     vender: [
       'axios'
@@ -48,13 +42,12 @@ module.exports = {
     }
   },
   modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    '@nuxtjs/axios'
   ],
-  axios: {
-    proxy: true
-  },
-  proxy: proxyObj,
+  // axios: {
+  //   proxy: true
+  // },
+  // proxy: proxyObj,
   cache: {
     max: 1000,
     maxAge: 900000
@@ -62,7 +55,8 @@ module.exports = {
   plugins: [
     { src: '~plugins/axios.js', ssr: true },
     { src: '~plugins/filters.js', ssr: false },
-    { src: '~plugins/directives.js', ssr: false }
+    { src: '~plugins/directives.js', ssr: false },
+    { src: '~plugins/fastclick.js', ssr: false }
   ],
   css: [
 

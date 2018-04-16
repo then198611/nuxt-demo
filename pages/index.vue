@@ -4,8 +4,7 @@
 
 <template>
   <div class="container-view welcome-view">
-    {{message}}
-
+    test
     <button @click="getData" v-logger="'get'">get</button>
     <button @click="postTest">post</button>
     <button @click="putTest">put</button>
@@ -18,15 +17,14 @@
 <script>
 
 export default {
-  async asyncData ({store}) {
-    return store.dispatch('user/getUserList').then(res => {
-      return {
-        message: res.message
-      }
-    })
-  },
+//  async asyncData ({store}) {
+//    return store.dispatch('user/getUserList').then(res => {
+//      return {
+//        message: res.message
+//      }
+//    })
+//  },
   mounted () {
-    console.log(this.$axios.prototype)
     // this.getData()
   },
   data (){
