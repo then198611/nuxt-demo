@@ -5,16 +5,16 @@
   "author": "huangshuaihui <huangshuaihui>",
   "private": true,
   "scripts": {
-    "dev": "npm run nginxStop && npm run createNginxConf && npm run nginxStart && HOST=0.0.0.0 PORT=8022 nuxt",
+    "dev": "npm run nxStop && npm run createNxConf && npm run nxStart && HOST=0.0.0.0 PORT=8022 nuxt",
     "mock": "MOCK=true nuxt",
     "build": "nuxt build",
     "start": "nuxt build && nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "createNginxConf": "node nginx.js",
-    "nginxStop": "./nginx.sh stop",
-    "nginxStart": "./nginx.sh start"
+    "createNxConf": "node nx.js",
+    "nxStop": "./nx.sh stop",
+    "nxStart": "./nx.sh start"
   },
   "dependencies": {
     "fastclick": "^1.0.6",
