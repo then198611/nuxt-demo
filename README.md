@@ -3,8 +3,8 @@
 
 ```javascript
 {
-  env: {   // 服务端渲染必需
-    baseURL: 'http://127.0.0.1:3000'
+  env: {   // 服务端渲染 默认为空
+    baseURL: ''
   },      
   proxy: {  //代理，可以设置多个
     '/api/': 'http://127.0.0.1:8066'
@@ -28,7 +28,7 @@ build:npm run build
 
 start:npm run start 
 
-# nuxt为增加增加的方法
+# nuxt为vue增加的方法
 
 api: https://zh.nuxtjs.org/api/
 
