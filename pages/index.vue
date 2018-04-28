@@ -1,34 +1,57 @@
-<style>
-
+<style lang="less">
+  .red{
+    color: red;
+  }
 </style>
 
 <template>
   <div class="container-view welcome-view">
+    <logo></logo>
+    <no-ssr>
+      <div>
+      <ai-act-banner :class="message"></ai-act-banner>
+      <ai-act-coin :class="message"></ai-act-coin>
+      </div>
+    </no-ssr>
+    <van-icon name="close" />
     test
-    <button @click="getData" v-logger="'get'">get</button>
-    <button @click="postTest">post</button>
-    <button @click="putTest">put</button>
-    <button @click="postQsTest">postQs</button>
-    <button @click="deleteTest">delete</button>
-    <button @click="patchTest">patch</button>
+    <van-button @click="getData" v-logger="'get'" class="red">get {{message}}</van-button>
+    <van-button @click="postTest">post</van-button>
+    <van-button @click="putTest">put</van-button>
+    <van-button @click="postQsTest">postQs</van-button>
+    <van-button @click="deleteTest">delete</van-button>
+    <van-button @click="patchTest">patch</van-button>
   </div>
 </template>
 
 <script>
 
+import Logo from '~/components/AppLogo.vue'
+
 export default {
-//  async asyncData ({store}) {
-//    return store.dispatch('user/getUserList').then(res => {
-//      return {
-//        message: res.message
-//      }
-//    })
-//  },
+  // async asyncData (context) {
+  //   return context.store.dispatch('user/getUserList').then(res => {
+  //     return {
+  //       message: res.message
+  //     }
+  //   })
+  // },
+  layouts: 'default',
+  components:{
+    Logo
+  },
   mounted () {
+    // console.log(this.$store.state)
     // this.getData()
+    // AI.isLogin().then(() => {
+    //   console.log('login')
+    // }, () => {
+    //   console.log('unlogin')
+    // })
   },
   data (){
     return {
+      message: '123',
       form: {
         a: 'ces',
         b: 2
@@ -37,9 +60,7 @@ export default {
   },
   methods: {
     getData () {
-      this.$store.dispatch('user/getUserList', this.form).then(res => {
-        console.log(res)
-      })
+      this.$store.dispatch('user/getUserList', this.form)
     },
     postTest () {
       this.$axios.post('/api/users', this.form)

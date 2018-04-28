@@ -1,4 +1,5 @@
 const S = {
+  base: '/n/',
   env: {
     baseURL: '',
   },

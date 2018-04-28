@@ -1,5 +1,6 @@
 <template>
   <div>
+    <a href="">aaaa</a>
     <nuxt/>
   </div>
 </template>

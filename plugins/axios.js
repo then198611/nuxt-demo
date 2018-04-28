@@ -3,30 +3,38 @@ import qs from 'qs'
 
 const methods = ['delete', 'get', 'head', 'options', 'post', 'postQs', 'put', 'patch']
 
-export default ({$axios, redirect}) => {
+export default ({$axios, redirect, req}) => {
 
+  // request拦截
   $axios.interceptors.request.use(
     config => {
+      if (process.server) {
+          config.headers.common.cookie = req.headers.cookie
+      }
       config.timeout = 1000
       config.baseURL = process.server ? S.env.baseURL : ''
       config.url = process.env.MOCK ? `${S.mock.prefix}${config.url}` : config.url
       return config
     },
   )
-
+  // response 拦截
   $axios.interceptors.response.use(
     res => {
       return res.data
     },
     error => {
-      if (process.title === 'node') {
+      // 服务端失败直接跳转404
+      if (process.server) {
         redirect('/404')
       }
     }
   )
-
+  
+  // 添加log
   $axios.onRequest(config => {
-    console.log(`【${config.method}】->${config.url}, data: ${JSON.stringify(config.params || config.data)}`)
+    if (process.server) {
+      console.log(`【${config.method}】->${config.url}, data: ${JSON.stringify(config.params || config.data)}`)
+    }
   })
 
   // $axios.onError(error => {
@@ -36,23 +44,20 @@ export default ({$axios, redirect}) => {
   //   }
   // })
   
+  // 覆写并增加postQs方法
   for (let method of methods) {
     $axios[method] = (url, data) => {
+      let isPostQs = method === 'postQs'
       let opt = {
-        method: method === 'postQs' ? 'post' : method,
+        method: isPostQs ? 'post' : method,
         url,
       }
-      if (method === 'get') {
-        opt.params = data
-      } else {
-        opt.data = data
-      }
+      opt[method === 'get' ? 'params' : 'data'] = isPostQs ? qs.stringify(data) : data
 
-      if (method === 'postQs') {
+      if (isPostQs) {
         opt.header = {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
-        opt.data = qs.stringify(data)
       }
       return $axios(opt)
     }
